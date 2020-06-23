@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30204.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazor.DynamicComponents", "src\Blazor.DynamicComponents\Blazor.DynamicComponents.csproj", "{8F7C55C0-23CB-4C8F-A841-D8D73861DFA4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazor.DynamicComponents.Tests", "src\Blazor.DynamicComponents.Tests\Blazor.DynamicComponents.Tests.csproj", "{3A52169D-88FF-487B-ACF8-01CBDAE1A180}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8F7C55C0-23CB-4C8F-A841-D8D73861DFA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F7C55C0-23CB-4C8F-A841-D8D73861DFA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F7C55C0-23CB-4C8F-A841-D8D73861DFA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F7C55C0-23CB-4C8F-A841-D8D73861DFA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A52169D-88FF-487B-ACF8-01CBDAE1A180}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A52169D-88FF-487B-ACF8-01CBDAE1A180}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A52169D-88FF-487B-ACF8-01CBDAE1A180}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A52169D-88FF-487B-ACF8-01CBDAE1A180}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8C6CC1C4-8DD2-49A6-93D1-4ACFF81D7ECF}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <RootNamespace>BigSolution.Blazor</RootNamespace>
+    <AssemblyTitle>BigSolution.Blazor.DynamicComponents</AssemblyTitle>
+    <Description>Dynmanic Components for Blazor</Description>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/emmanuelbenitez/BigSolution.Blazor.DynamicComponents</RepositoryUrl>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <GeneratePackageOnBuild Condition=" '$(GeneratePackageOnBuild)' == '' ">false</GeneratePackageOnBuild>
+    <PackageId>$(AssemblyTitle)</PackageId>
+    <PackageDescription>$(Description)</PackageDescription>
+    <!--<PackageIconUrl>icon url prop</PackageIconUrl>-->
+    <PackageProjectUrl>$(RepositoryUrl)</PackageProjectUrl>
+    <!--<PackageReleaseNotes>release notes prop</PackageReleaseNotes>-->
+    <PackageTags>blazor components dynamic</PackageTags>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DocumentationFile>bin\Release\$(AssemblyTitle).xml</DocumentationFile>
+    <NoWarn>1701;1702</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+    <PackageReference Include="BigSolution.Infra.Validation" Version="1.0.0" />
+    <PackageReference Include="BlazorComponentUtilities" Version="1.6.0" />
+    <PackageReference Include="JetBrains.Annotations" Version="2020.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.5" />
+  </ItemGroup>
+
+</Project>
