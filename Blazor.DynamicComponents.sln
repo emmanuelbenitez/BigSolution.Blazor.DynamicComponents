@@ -7,6 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazor.DynamicComponents", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazor.DynamicComponents.Tests", "src\Blazor.DynamicComponents.Tests\Blazor.DynamicComponents.Tests.csproj", "{3A52169D-88FF-487B-ACF8-01CBDAE1A180}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{BC6F9CC5-255D-48C7-B6C8-9E60AA0B92F4}"
+	ProjectSection(SolutionItems) = preProject
+		azure-devops-ci.yml = azure-devops-ci.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
