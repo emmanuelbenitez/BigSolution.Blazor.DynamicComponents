@@ -18,7 +18,7 @@ stages:
   - stage: build
     displayName: "Build stage"
     variables:
-      revision: $[counter(variables['build.reason'], 0)]
+      revision: $[counter(variables['build.buildid'], 0)]
     jobs:
       - job: prepare
         displayName: "Prepare"
