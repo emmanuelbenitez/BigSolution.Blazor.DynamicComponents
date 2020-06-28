@@ -1,30 +1,16 @@
 trigger:
   - master
 
-# resources:
-#   repositories:
-#     - repository: pipelineTemplateRepository
-#       type: github
-#       name: emmanuelbenitez/BigSolution.Build.Agent.Yaml.Pipeline.Templates
-#       endpoint: github.com_emmanuelbenitez
+resources:
+  repositories:
+    - repository: pipelineTemplateRepository
+      type: github
+      name: emmanuelbenitez/BigSolution.Build.Agent.Yaml.Pipeline.Templates
+      endpoint: github.com_emmanuelbenitez
 
-# extends:
-#   template: Pipelines/dotnet-nuget/continuous-integration.yml@pipelineTemplateRepository
-#   parameters:
-#     ProjectOrSolutionPath: "$(Build.SourcesDirectory)/Blazor.DynamicComponents.sln"
-#     Major: 1
-#     Minor: 0
-stages:
-  - stage: build
-    displayName: "Build stage"
-    variables:
-      revision: $[counter(variables['build.buildid'], 0)]
-    jobs:
-      - job: prepare
-        displayName: "Prepare"
-        steps:
-          - checkout: none
-
-          - powershell: |
-              Write-Host "Build=$(Build.BuildId)|Revision=$(revision)"
-            displayName: log variable
+extends:
+  template: Pipelines/dotnet-nuget/continuous-integration.yml@pipelineTemplateRepository
+  parameters:
+    ProjectOrSolutionPath: "$(Build.SourcesDirectory)/Blazor.DynamicComponents.sln"
+    Major: 1
+    Minor: 0
