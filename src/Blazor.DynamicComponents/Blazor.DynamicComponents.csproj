@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <RootNamespace>BigSolution.Blazor</RootNamespace>
+    <AssemblyName>BigSolution.Blazor.DynamicComponents</AssemblyName>
     <AssemblyTitle>BigSolution.Blazor.DynamicComponents</AssemblyTitle>
     <Description>Dynmanic Components for Blazor</Description>
   </PropertyGroup>

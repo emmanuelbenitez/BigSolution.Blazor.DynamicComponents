@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>BigSolution.Blazor</RootNamespace>
+    <AssemblyName>BigSolution.Blazor.DynamicComponents.Tests</AssemblyName>
     <AssemblyTitle>BigSolution.Blazor.DynamicComponents.Tests</AssemblyTitle>
     <Description>Tests for Dynmanic Components for Blazor</Description>
     <RazorLangVersion>3.0</RazorLangVersion>
