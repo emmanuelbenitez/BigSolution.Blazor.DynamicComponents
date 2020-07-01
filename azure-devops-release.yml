@@ -1,0 +1,20 @@
+schedules:
+- cron: "0 0 * * *"
+  displayName: Daily midnight build
+  branches:
+    include:
+    - master
+
+resources:
+  repositories:
+    - repository: pipelineTemplateRepository
+      type: github
+      name: emmanuelbenitez/BigSolution.Build.Agent.Yaml.Pipeline.Templates
+      endpoint: github.com_emmanuelbenitez
+
+extends:
+  template: Pipelines/dotnet-nuget/release.yml@pipelineTemplateRepository
+  parameters:
+    ProjectOrSolutionPath: "$(Build.SourcesDirectory)/Blazor.DynamicComponents.sln"
+    Major: 1
+    Minor: 0
