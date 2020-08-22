@@ -33,7 +33,9 @@ namespace BigSolution.Blazor
         /// <inheritdoc />
         protected override void BuildRenderTree([NotNull] RenderTreeBuilder builder)
         {
-            Requires.NotNull(builder, nameof(builder));
+            Requires.Argument(builder, nameof(builder))
+                .IsNotNull()
+                .Check();
             var sequenceGenerator = new SequenceGenerator();
 
             builder.OpenElement(sequenceGenerator.GetNextValue(), TagName);
