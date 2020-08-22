@@ -8,6 +8,9 @@ resources:
       name: emmanuelbenitez/BigSolution.Build.Agent.Yaml.Pipeline.Templates
       endpoint: github.com_emmanuelbenitez
 
+variables:
+  - template: version-variables.yml
+
 extends:
   template: Pipelines/dotnet-nuget/continuous-integration.yml@pipelineTemplateRepository
   parameters:

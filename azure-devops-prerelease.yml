@@ -1,4 +1,13 @@
 trigger: none
+schedules:
+- cron: "0 0 * * *"
+  displayName: Daily midnight build
+  branches:
+    include:
+    - master
+
+variables:
+  - template: version-variables.yml
 
 resources:
   repositories:
@@ -14,4 +23,4 @@ extends:
     Major: ${{ variables.versionMajor }}
     Minor: ${{ variables.versionMinor }}
     Patch: ${{ variables.versionPatch }}
-    IsPreRelease: false
+    IsPreRelease: true
