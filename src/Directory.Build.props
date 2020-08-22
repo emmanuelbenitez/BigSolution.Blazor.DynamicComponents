@@ -17,5 +17,11 @@
 
 -->
 <Project>
-	<Import Project="$(MSBuildThisFileDirectory)../.resourses/Directory.Build.props" />
+  <PropertyGroup>
+    <Major Condition=" '$(Major)' == '' ">1</Major>
+    <Minor Condition=" '$(Minor)' == '' ">0</Minor>
+    <Patch Condition=" '$(Patch)' == '' ">0</Patch>
+  </PropertyGroup>
+
+  <Import Project="$(MSBuildThisFileDirectory)../.resourses/Directory.Build.props" />
 </Project>
