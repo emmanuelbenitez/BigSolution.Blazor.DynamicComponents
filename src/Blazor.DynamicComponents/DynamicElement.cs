@@ -28,6 +28,8 @@ namespace BigSolution.Blazor
     /// </summary>
     public class DynamicElement : DynamicComponentWithBodyBase
     {
+        private const string CLASS_ATTRIBUTE_NAME = "class";
+
         #region Base Class Member Overrides
 
         /// <inheritdoc />
@@ -39,8 +41,8 @@ namespace BigSolution.Blazor
             var sequenceGenerator = new SequenceGenerator();
 
             builder.OpenElement(sequenceGenerator.GetNextValue(), TagName);
-            builder.AddAttribute(sequenceGenerator.GetNextValue(), "class", CssClasses);
-            builder.AddMultipleAttributes(sequenceGenerator.GetNextValue(), AdditionalAttributes?.Where(pair => pair.Key != "class"));
+            builder.AddAttribute(sequenceGenerator.GetNextValue(), CLASS_ATTRIBUTE_NAME, CssClasses);
+            builder.AddMultipleAttributes(sequenceGenerator.GetNextValue(), AdditionalAttributes?.Where(pair => pair.Key != CLASS_ATTRIBUTE_NAME));
             builder.AddContent(sequenceGenerator.GetNextValue(), ChildContent);
             builder.CloseElement();
         }
