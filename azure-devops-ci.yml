@@ -1,5 +1,6 @@
 trigger:
   - master
+  - dev/*
 
 resources:
   repositories:
@@ -15,5 +16,3 @@ extends:
   template: Pipelines/dotnet-nuget/continuous-integration.yml@pipelineTemplateRepository
   parameters:
     ProjectOrSolutionPath: "$(Build.SourcesDirectory)/Blazor.DynamicComponents.sln"
-    Major: 1
-    Minor: 0

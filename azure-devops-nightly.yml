@@ -23,4 +23,4 @@ extends:
     Major: ${{ variables.versionMajor }}
     Minor: ${{ variables.versionMinor }}
     Patch: ${{ variables.versionPatch }}
-    IsPreRelease: true
+    PreRelease: preview
