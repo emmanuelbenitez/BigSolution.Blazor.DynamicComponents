@@ -1,6 +1,6 @@
 ﻿#region Copyright & License
 
-// Copyright © 2020 - 2020 Emmanuel Benitez
+// Copyright © 2020 - 2021 Emmanuel Benitez
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,7 +18,6 @@
 
 using System.Linq;
 using BlazorComponentUtilities;
-using JetBrains.Annotations;
 using Microsoft.AspNetCore.Components.Rendering;
 
 namespace BigSolution.Blazor
@@ -28,12 +27,10 @@ namespace BigSolution.Blazor
     /// </summary>
     public class DynamicElement : DynamicComponentWithBodyBase
     {
-        private const string CLASS_ATTRIBUTE_NAME = "class";
-
         #region Base Class Member Overrides
 
         /// <inheritdoc />
-        protected override void BuildRenderTree([NotNull] RenderTreeBuilder builder)
+        protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
             Requires.Argument(builder, nameof(builder))
                 .IsNotNull()
@@ -57,5 +54,7 @@ namespace BigSolution.Blazor
         protected override CssBuilder CssBuilder => new CssBuilder();
 
         #endregion
+
+        private const string CLASS_ATTRIBUTE_NAME = "class";
     }
 }

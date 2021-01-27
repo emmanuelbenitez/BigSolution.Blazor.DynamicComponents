@@ -23,5 +23,5 @@
     <Patch Condition=" '$(Patch)' == '' ">0</Patch>
   </PropertyGroup>
 
-  <Import Project="$(MSBuildThisFileDirectory)../.resourses/Directory.Build.props" />
+  <Import Project="$(MSBuildThisFileDirectory)../.settings/Directory.Build.props" />
 </Project>

@@ -10,7 +10,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{BC6F9CC5-255D-48C7-B6C8-9E60AA0B92F4}"
 	ProjectSection(SolutionItems) = preProject
 		azure-devops-ci.yml = azure-devops-ci.yml
-		azure-devops-prerelease.yml = azure-devops-prerelease.yml
+		azure-devops-nightly.yml = azure-devops-nightly.yml
 		azure-devops-release.yml = azure-devops-release.yml
 		src\Directory.Build.props = src\Directory.Build.props
 		src\Directory.Build.targets = src\Directory.Build.targets
