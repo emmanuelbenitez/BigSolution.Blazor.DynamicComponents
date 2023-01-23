@@ -21,6 +21,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using BlazorComponentUtilities;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 
 namespace BigSolution.Blazor
@@ -46,6 +47,7 @@ namespace BigSolution.Blazor
 			builder.AddAttribute(sequenceGenerator.GetNextValue(), STYLE_ATTRIBUTE_NAME, Style);
 			builder.AddMultipleAttributes(sequenceGenerator.GetNextValue(), AdditionalAttributes?.Where(pair => !AdditionalAttributesExcludedFromRendering.Contains(pair.Key)));
 			BuildRenderTreeForChildContent(() => builder.AddContent(sequenceGenerator.GetNextValue(), ChildContent));
+			builder.AddElementReferenceCapture(5, elementReference => { Element = elementReference; });
 			builder.CloseElement();
 		}
 
@@ -60,6 +62,14 @@ namespace BigSolution.Blazor
 		protected override StyleBuilder StyleBuilder => new();
 
 		#endregion
+
+		/// <summary>
+		/// Gets or sets the associated <see cref="T:Microsoft.AspNetCore.Components.ElementReference" />.
+		/// <para>
+		/// May be <see langword="null" /> if accessed before the component is rendered.
+		/// </para>
+		/// </summary>
+		public ElementReference? Element { get; [param: DisallowNull] protected set; }
 
 		/// <summary>Gets the additional attributes excluded from rendering.</summary>
 		/// <value>The additional attributes excluded from rendering.</value>

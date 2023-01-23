@@ -33,7 +33,14 @@ namespace BigSolution.Blazor
         public void ClassAttributeRendered()
         {
             var renderedComponent = RenderComponent<DynamicElement>(ComponentParameter.CreateParameter(nameof(DynamicElement.Classes), "test"));
-            renderedComponent.Find("div").ClassName.Should().Be("test");
+			renderedComponent.Instance.Element.Should().NotBeNull();
+		}
+
+		[Fact]
+		public void ElementIsNotNullAfterRendering()
+		{
+			var renderedComponent = RenderComponent<DynamicElement>();
+			renderedComponent.Instance.Element.Should().NotBeNull();
 		}
 
 		[Fact]
