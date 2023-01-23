@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <RootNamespace>BigSolution.Blazor</RootNamespace>
     <AssemblyName>BigSolution.Blazor.DynamicComponents</AssemblyName>
     <AssemblyTitle>BigSolution.Blazor.DynamicComponents</AssemblyTitle>
@@ -32,15 +32,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.3">
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="6.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
     <PackageReference Include="BigSolution.Infra.Validation" Version="2.0.0-preview.210201.0" />
-    <PackageReference Include="BlazorComponentUtilities" Version="1.6.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Components" Version="5.0.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.2" />
+    <PackageReference Include="BlazorComponentUtilities" Version="1.8.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.13" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.13" />
   </ItemGroup>
 
 </Project>

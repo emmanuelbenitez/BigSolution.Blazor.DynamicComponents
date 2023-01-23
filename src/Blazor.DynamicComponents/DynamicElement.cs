@@ -1,6 +1,6 @@
 ﻿#region Copyright & License
 
-// Copyright © 2020 - 2021 Emmanuel Benitez
+// Copyright © 2020 - 2023 Emmanuel Benitez
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,45 +16,63 @@
 
 #endregion
 
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using BlazorComponentUtilities;
 using Microsoft.AspNetCore.Components.Rendering;
 
 namespace BigSolution.Blazor
 {
-    /// <summary>
-    /// Defines a dynamic HTML element
-    /// </summary>
-    public class DynamicElement : DynamicComponentWithBodyBase
-    {
-        #region Base Class Member Overrides
+	/// <summary>
+	/// Defines a dynamic HTML element
+	/// </summary>
+	[SuppressMessage("ReSharper", "ClassWithVirtualMembersNeverInherited.Global", Justification = "Public API.")]
+	public class DynamicElement : DynamicComponentWithBodyBase
+	{
+		#region Base Class Member Overrides
 
-        /// <inheritdoc />
-        protected override void BuildRenderTree(RenderTreeBuilder builder)
-        {
-            Requires.Argument(builder, nameof(builder))
-                .IsNotNull()
-                .Check();
-            var sequenceGenerator = new SequenceGenerator();
+		/// <inheritdoc />
+		protected override void BuildRenderTree(RenderTreeBuilder builder)
+		{
+			Requires.Argument(builder, nameof(builder))
+				.IsNotNull()
+				.Check();
+			var sequenceGenerator = new SequenceGenerator();
 
-            builder.OpenElement(sequenceGenerator.GetNextValue(), TagName);
-            builder.AddAttribute(sequenceGenerator.GetNextValue(), CLASS_ATTRIBUTE_NAME, CssClasses);
-            builder.AddMultipleAttributes(sequenceGenerator.GetNextValue(), AdditionalAttributes?.Where(pair => pair.Key != CLASS_ATTRIBUTE_NAME));
-            builder.AddContent(sequenceGenerator.GetNextValue(), ChildContent);
-            builder.CloseElement();
-        }
+			builder.OpenElement(sequenceGenerator.GetNextValue(), TagName);
+			builder.AddAttribute(sequenceGenerator.GetNextValue(), CLASS_ATTRIBUTE_NAME, CssClasses);
+			builder.AddAttribute(sequenceGenerator.GetNextValue(), STYLE_ATTRIBUTE_NAME, Style);
+			builder.AddMultipleAttributes(sequenceGenerator.GetNextValue(), AdditionalAttributes?.Where(pair => !AdditionalAttributesExcludedFromRendering.Contains(pair.Key)));
+			BuildRenderTreeForChildContent(() => builder.AddContent(sequenceGenerator.GetNextValue(), ChildContent));
+			builder.CloseElement();
+		}
 
-        #endregion
+		#endregion
 
-        #region Base Class Member Overrides
+		#region Base Class Member Overrides
 
-        /// <summary>
-        /// Gets the CSS builder
-        /// </summary>
-        protected override CssBuilder CssBuilder => new CssBuilder();
+		/// <inheritdoc />
+		protected override CssBuilder CssBuilder => new();
 
-        #endregion
+		/// <inheritdoc />
+		protected override StyleBuilder StyleBuilder => new();
 
-        private const string CLASS_ATTRIBUTE_NAME = "class";
-    }
+		#endregion
+
+		/// <summary>Gets the additional attributes excluded from rendering.</summary>
+		/// <value>The additional attributes excluded from rendering.</value>
+		protected virtual IEnumerable<string> AdditionalAttributesExcludedFromRendering => new[] { CLASS_ATTRIBUTE_NAME, STYLE_ATTRIBUTE_NAME };
+
+		/// <summary>Builds the content of the render tree for child.</summary>
+		/// <param name="renderContent">Content of the render.</param>
+		protected virtual void BuildRenderTreeForChildContent(Action renderContent)
+		{
+			renderContent();
+		}
+
+		private const string CLASS_ATTRIBUTE_NAME = "class";
+		private const string STYLE_ATTRIBUTE_NAME = "style";
+	}
 }

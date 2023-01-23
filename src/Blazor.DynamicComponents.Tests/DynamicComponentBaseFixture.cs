@@ -46,9 +46,11 @@ namespace BigSolution.Blazor
         {
             #region Base Class Member Overrides
 
-            protected override CssBuilder CssBuilder => new CssBuilder();
+            protected override CssBuilder CssBuilder => new();
 
-            protected override IEnumerable<string> SupportedTagNames => new[] { "tagName" };
+			protected override StyleBuilder StyleBuilder => new();
+
+			protected override IEnumerable<string> SupportedTagNames => new[] { "tagName" };
 
             #endregion
         }

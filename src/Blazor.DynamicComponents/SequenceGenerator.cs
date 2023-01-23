@@ -35,5 +35,11 @@ namespace BigSolution.Blazor
         }
 
         private int _sequence;
+
+		/// <summary>Resets the value of the sequence to zero.</summary>
+		public void Reset()
+		{
+			_sequence = 0;
+		}
     }
 }
