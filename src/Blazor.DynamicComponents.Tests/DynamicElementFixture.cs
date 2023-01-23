@@ -16,7 +16,6 @@
 
 #endregion
 
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using AngleSharp.Dom;
@@ -24,71 +23,70 @@ using Bunit;
 using FluentAssertions;
 using Xunit;
 
-namespace BigSolution.Blazor
+namespace BigSolution.Blazor;
+
+[SuppressMessage("Usage", "BL0005:Component parameter should not be set outside of its component.", Justification = "Test Purpose", Scope = "member")]
+public class DynamicElementFixture : TestContext
 {
-    [SuppressMessage("Usage", "BL0005:Component parameter should not be set outside of its component.", Justification = "Test Purpose", Scope = "member")]
-    public class DynamicElementFixture : TestContext
-    {
-        [Fact]
-        public void ClassAttributeRendered()
-        {
-            var renderedComponent = RenderComponent<DynamicElement>(ComponentParameter.CreateParameter(nameof(DynamicElement.Classes), "test"));
-			renderedComponent.Instance.Element.Should().NotBeNull();
-		}
+	[Fact]
+	public void ClassAttributeRendered()
+	{
+		var renderedComponent = RenderComponent<DynamicElement>(ComponentParameter.CreateParameter(nameof(DynamicElement.Classes), "test"));
+		renderedComponent.Instance.Element.Should().NotBeNull();
+	}
 
-		[Fact]
-		public void ElementIsNotNullAfterRendering()
+	[Fact]
+	public void ElementIsNotNullAfterRendering()
+	{
+		var renderedComponent = RenderComponent<DynamicElement>(builder => builder.AddUnmatched("id", "test"));
+		renderedComponent.Instance.Element.Should().NotBeNull();
+	}
+
+	[Fact]
+	public void ClassAttributeNotRendered()
+	{
+		var renderedComponent = RenderComponent<DynamicElement>();
+		renderedComponent.Find("div").ClassName.Should().BeNull();
+		renderedComponent.Find("div").Attributes.GetNamedItem("style").Should().BeNull();
+	}
+
+	[Fact]
+	public void StyleAttributeNotRendered()
+	{
+		var renderedComponent = RenderComponent<DynamicElement>();
+		renderedComponent.Find("div").Attributes.GetNamedItem("style").Should().BeNull();
+	}
+
+	[Fact]
+	public void StyleAttributeRendered()
+	{
+		var renderedComponent = RenderComponent<DynamicElement>(builder => builder.AddUnmatched("style", "test"));
+		renderedComponent.Find("div").Attributes.GetNamedItem("style").Should().NotBeNull()
+			.And.Subject.As<IAttr>().Value.Should().Be("test");
+	}
+
+	[Fact]
+	public void CssClassesWellFormatted()
+	{
+		new DynamicElement {
+			Classes = "test",
+			AdditionalAttributes = new ReadOnlyDictionary<string, object>(new Dictionary<string, object> { { "class", "value" } })
+		}.CssClasses.Should().Be("test value");
+	}
+
+	[Fact]
+	public void StyleWellFormatted()
+	{
+		new DynamicElement
 		{
-			var renderedComponent = RenderComponent<DynamicElement>();
-			renderedComponent.Instance.Element.Should().NotBeNull();
-		}
+			AdditionalAttributes = new ReadOnlyDictionary<string, object>(new Dictionary<string, object> { { "style", "value" } })
+		}.Style.Should().Be("value");
+	}
 
-		[Fact]
-		public void ClassAttributeNotRendered()
-		{
-			var renderedComponent = RenderComponent<DynamicElement>();
-			renderedComponent.Find("div").ClassName.Should().BeNull();
-			renderedComponent.Find("div").Attributes.GetNamedItem("style").Should().BeNull();
-		}
-
-		[Fact]
-		public void StyleAttributeNotRendered()
-		{
-			var renderedComponent = RenderComponent<DynamicElement>();
-			renderedComponent.Find("div").Attributes.GetNamedItem("style").Should().BeNull();
-		}
-
-		[Fact]
-		public void StyleAttributeRendered()
-		{
-			var renderedComponent = RenderComponent<DynamicElement>(builder => builder.AddUnmatched("style", "test"));
-			renderedComponent.Find("div").Attributes.GetNamedItem("style").Should().NotBeNull()
-				.And.Subject.As<IAttr>().Value.Should().Be("test");
-		}
-
-		[Fact]
-        public void CssClassesWellFormatted()
-        {
-            new DynamicElement {
-                Classes = "test",
-                AdditionalAttributes = new ReadOnlyDictionary<string, object>(new Dictionary<string, object> { { "class", "value" } })
-            }.CssClasses.Should().Be("test value");
-        }
-
-		[Fact]
-		public void StyleWellFormatted()
-		{
-			new DynamicElement
-			{
-				AdditionalAttributes = new ReadOnlyDictionary<string, object>(new Dictionary<string, object> { { "style", "value" } })
-			}.Style.Should().Be("value");
-		}
-
-		[Fact]
-        public void TagNameRendered()
-        {
-            var renderedComponent = RenderComponent<DynamicElement>(ComponentParameter.CreateParameter(nameof(DynamicElement.TagName), "test"));
-            renderedComponent.Find("test").Should().NotBeNull();
-        }
-    }
+	[Fact]
+	public void TagNameRendered()
+	{
+		var renderedComponent = RenderComponent<DynamicElement>(ComponentParameter.CreateParameter(nameof(DynamicElement.TagName), "test"));
+		renderedComponent.Find("test").Should().NotBeNull();
+	}
 }

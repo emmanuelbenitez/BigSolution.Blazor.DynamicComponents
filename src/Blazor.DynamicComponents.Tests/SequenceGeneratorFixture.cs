@@ -19,16 +19,24 @@
 using FluentAssertions;
 using Xunit;
 
-namespace BigSolution.Blazor
+namespace BigSolution.Blazor;
+
+public class SequenceGeneratorFixture
 {
-    public class SequenceGeneratorFixture
-    {
-        [Fact]
-        public void GetNextValueSucceeds()
-        {
-            var sequenceGenerator = new SequenceGenerator();
-            sequenceGenerator.GetNextValue().Should().Be(0);
-            sequenceGenerator.GetNextValue().Should().Be(1);
-        }
-    }
+	[Fact]
+	public void GetNextValueSucceeds()
+	{
+		var sequenceGenerator = new SequenceGenerator();
+		sequenceGenerator.GetNextValue().Should().Be(0);
+		sequenceGenerator.GetNextValue().Should().Be(1);
+	}
+
+	[Fact]
+	public void ResetSucceeds()
+	{
+		var sequenceGenerator = new SequenceGenerator();
+		sequenceGenerator.GetNextValue().Should().Be(0);
+		sequenceGenerator.Reset();
+		sequenceGenerator.GetNextValue().Should().Be(0);
+	}
 }

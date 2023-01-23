@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
     <RootNamespace>BigSolution.Blazor</RootNamespace>
     <AssemblyName>BigSolution.Blazor.DynamicComponents.Tests</AssemblyName>
     <AssemblyTitle>BigSolution.Blazor.DynamicComponents.Tests</AssemblyTitle>

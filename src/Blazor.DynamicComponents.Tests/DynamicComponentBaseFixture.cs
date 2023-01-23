@@ -16,43 +16,40 @@
 
 #endregion
 
-using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using BlazorComponentUtilities;
 using FluentAssertions;
 using Xunit;
 
-namespace BigSolution.Blazor
+namespace BigSolution.Blazor;
+
+[SuppressMessage("Usage", "BL0005:Component parameter should not be set outside of its component.", Justification = "Test Purpose", Scope = "member")]
+public class DynamicComponentBaseFixture
 {
-    [SuppressMessage("Usage", "BL0005:Component parameter should not be set outside of its component.", Justification = "Test Purpose", Scope = "member")]
-    public class DynamicComponentBaseFixture
-    {
-        [Fact]
-        public void SetTagNameFailed()
-        {
-            Action action = () => { new FakeDynamicComponentWhitSupportTagNames().TagName = "a"; };
-            action.Should().ThrowExactly<ArgumentOutOfRangeException>().Which.ParamName.Should().Be("value");
-        }
+	[Fact]
+	public void SetTagNameFailed()
+	{
+		var action = () => { new FakeDynamicComponentWhitSupportTagNames().TagName = "a"; };
+		action.Should().ThrowExactly<ArgumentOutOfRangeException>().Which.ParamName.Should().Be("value");
+	}
 
-        [Fact]
-        public void SetTagNameSucceeds()
-        {
-            var component = new FakeDynamicComponentWhitSupportTagNames { TagName = "tagName" };
-            component.TagName.Should().Be("tagName");
-        }
+	[Fact]
+	public void SetTagNameSucceeds()
+	{
+		var component = new FakeDynamicComponentWhitSupportTagNames { TagName = "tagName" };
+		component.TagName.Should().Be("tagName");
+	}
 
-        private class FakeDynamicComponentWhitSupportTagNames : DynamicComponentBase
-        {
-            #region Base Class Member Overrides
+	private class FakeDynamicComponentWhitSupportTagNames : DynamicComponentBase
+	{
+		#region Base Class Member Overrides
 
-            protected override CssBuilder CssBuilder => new();
+		protected override CssBuilder CssBuilder => new();
 
-			protected override StyleBuilder StyleBuilder => new();
+		protected override StyleBuilder StyleBuilder => new();
 
-			protected override IEnumerable<string> SupportedTagNames => new[] { "tagName" };
+		protected override IEnumerable<string> SupportedTagNames => new[] { "tagName" };
 
-            #endregion
-        }
-    }
+		#endregion
+	}
 }
