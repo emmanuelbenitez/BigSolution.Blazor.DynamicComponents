@@ -43,7 +43,7 @@ public class DynamicElement : DynamicComponentWithBodyBase
 		builder.AddAttribute(sequenceGenerator.GetNextValue(), CLASS_ATTRIBUTE_NAME, CssClasses);
 		builder.AddAttribute(sequenceGenerator.GetNextValue(), STYLE_ATTRIBUTE_NAME, Style);
 		builder.AddMultipleAttributes(sequenceGenerator.GetNextValue(), Attributes.Where(pair => !AdditionalAttributesExcludedFromRendering.Contains(pair.Key)));
-		BuildRenderTreeForChildContent(sequenceGenerator, () => builder.AddContent(sequenceGenerator.GetNextValue(), ChildContent));
+		BuildRenderTreeForChildContent(builder, sequenceGenerator, () => builder.AddContent(sequenceGenerator.GetNextValue(), ChildContent));
 		builder.AddElementReferenceCapture(5, elementReference => { Element = elementReference; });
 		builder.CloseElement();
 	}
@@ -83,10 +83,11 @@ public class DynamicElement : DynamicComponentWithBodyBase
 	/// <summary>
 	/// Builds the content of the render tree for child.
 	/// </summary>
+	/// <param name="renderTreeBuilder"></param>
 	/// <param name="sequenceGenerator">The sequence generator.</param>
 	/// <param name="renderContent">Content of the render.</param>
 	[SuppressMessage("ReSharper", "UnusedParameter.Global", Justification = "Public API.")]
-	protected virtual void BuildRenderTreeForChildContent(SequenceGenerator sequenceGenerator, Action renderContent)
+	protected virtual void BuildRenderTreeForChildContent(RenderTreeBuilder renderTreeBuilder, SequenceGenerator sequenceGenerator, Action renderContent)
 	{
 		renderContent();
 	}
