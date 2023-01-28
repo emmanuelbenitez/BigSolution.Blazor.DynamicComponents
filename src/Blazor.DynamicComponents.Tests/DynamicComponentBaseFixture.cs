@@ -17,7 +17,6 @@
 #endregion
 
 using System.Diagnostics.CodeAnalysis;
-using BlazorComponentUtilities;
 using FluentAssertions;
 using Xunit;
 

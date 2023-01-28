@@ -40,7 +40,6 @@
     </PackageReference>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
     <PackageReference Include="BigSolution.Infra.Validation" Version="2.0.0-preview.210201.0" />
-    <PackageReference Include="BlazorComponentUtilities" Version="1.8.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.13" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.13" />
   </ItemGroup>

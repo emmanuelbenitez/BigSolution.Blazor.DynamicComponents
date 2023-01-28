@@ -17,7 +17,6 @@
 #endregion
 
 using System.Diagnostics.CodeAnalysis;
-using BlazorComponentUtilities;
 using Microsoft.AspNetCore.Components;
 
 namespace BigSolution.Blazor;
@@ -44,15 +43,15 @@ public abstract class DynamicComponentBase : ComponentBase
 	/// Gets the generated CSS classes
 	/// </summary>
 	public string CssClasses => CssBuilder
-		.AddClass(Classes, !string.IsNullOrWhiteSpace(Classes))
-		.AddClassFromAttributes(AdditionalAttributes)
-		.NullIfEmpty();
+		.Append(Classes ?? string.Empty, !string.IsNullOrWhiteSpace(Classes))
+		.AppendFromAttributes(AdditionalAttributes)
+		.Build();
 
 	/// <summary>Gets the style.</summary>
 	/// <value>The style.</value>
 	public string Style => StyleBuilder
-		.AddStyleFromAttributes(AdditionalAttributes)
-		.NullIfEmpty();
+		.AppendFromAttributes(AdditionalAttributes)
+		.Build();
 
 	/// <summary>
 	/// Gets or sets the HTML tag name

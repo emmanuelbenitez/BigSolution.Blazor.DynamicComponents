@@ -60,9 +60,9 @@ public class DynamicElementFixture : TestContext
 	[Fact]
 	public void StyleAttributeRendered()
 	{
-		var renderedComponent = RenderComponent<DynamicElement>(builder => builder.AddUnmatched("style", "test"));
+		var renderedComponent = RenderComponent<DynamicElement>(builder => builder.AddUnmatched("style", "test:value"));
 		renderedComponent.Find("div").Attributes.GetNamedItem("style").Should().NotBeNull()
-			.And.Subject.As<IAttr>().Value.Should().Be("test");
+			.And.Subject.As<IAttr>().Value.Should().Be("test:value");
 	}
 
 	[Fact]
@@ -79,8 +79,8 @@ public class DynamicElementFixture : TestContext
 	{
 		new DynamicElement
 		{
-			AdditionalAttributes = new ReadOnlyDictionary<string, object>(new Dictionary<string, object> { { "style", "value" } })
-		}.Style.Should().Be("value");
+			AdditionalAttributes = new ReadOnlyDictionary<string, object>(new Dictionary<string, object> { { "style", "property:value" } })
+		}.Style.Should().Be("property:value");
 	}
 
 	[Fact]
